@@ -1,0 +1,19 @@
+
+<h1>Hi Admin, is it you?</h1>
+<div class="formContainer">
+		<form class="form-horizontal addForm" role="form" name="login" >
+			<div class="form-group" ng-class="{ 'has-error' : login.name.$invalid && !login.name.$pristine }">
+				<label class="col-sm-2 control-label">Your name</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="fieldtitle" name="name" ng-model="vm.user.name" required>
+				</div>
+			</div>
+			<div class="form-group" ng-class="{ 'has-error' : login.password.$invalid && !login.password.$pristine }">
+				<label class="col-sm-2 control-label">Your password</label>
+				<div class="col-sm-4">
+					<input type="password" class="form-control" required id="fieldPas" name="password" ng-model="vm.user.password">
+				</div>
+			</div>
+			<button class="btn btn-default" id="btnSubmit" ng-click="vm.loginUser()" ng-disabled="login.$invalid">Log in</button>
+		</form>
+</div>

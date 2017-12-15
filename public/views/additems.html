@@ -1,0 +1,109 @@
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="form-сontainer">
+			<form class="form-inline" role="form" name="itemForm">
+				<div class="form-group" ng-class="{ 'has-error' : itemForm.firstName.$invalid && !itemForm.firstName.$pristine }">
+					<div class="col-sm-4">
+						<input type="text" class="form-control" required name="firstName" ng-model="vm.newPerson.firstName" placeholder="First Name">
+					</div>
+				</div>
+				<div class="form-group" ng-class="{ 'has-error' : itemForm.lastName.$invalid && !itemForm.lastName.$pristine }">
+					<div class="col-sm-4">
+						<input type="text" class="form-control" required name="lastName" ng-model="vm.newPerson.lastName" placeholder="Last Name">
+					</div>
+				</div>
+				<div class="form-group" ng-class="{ 'has-error' : itemForm.position.$invalid && !itemForm.position.$pristine }">
+					<div class="col-sm-4">
+						<input type="text" class="form-control" required name="position" ng-model="vm.newPerson.position" placeholder="Position">
+					</div>
+				</div>
+			</form>
+			<button class="btn btn-default" id="btnSubmit" ng-click="vm.createPerson()" ng-disabled="itemForm.$invalid">Save</button>
+		</div>
+	</div>
+		
+
+		<div class="container">
+			
+			<form>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon" ng-click="vm.searchPerson()"><i class="fa fa-search" ></i></div>
+						<input type="text" class="form-control" placeholder="Search" ng-model="vm.searchField" ng-change="vm.searchPerson()" ng-model-options='{ debounce: 1000 }'>
+					</div>      
+				</div>
+			</form>
+			
+			<table class="table table-bordered table-striped">
+				
+				<thead>
+					<tr>
+						<td></td>
+						<td>
+							<span ng-click="vm.sortType = 'firstName'; vm.sortReverse = !vm.sortReverse">
+								Firstname </span>
+								<span ng-show="vm.sortType == 'firstName' && !vm.sortReverse" class="fa fa-caret-down"></span>
+								<span ng-show="vm.sortType == 'firstName' && vm.sortReverse" class="fa fa-caret-up"></span>
+							</a>
+						</td>
+						<td>
+							<span ng-click="vm.sortType = 'lastName'; vm.sortReverse = !vm.sortReverse">
+								Lastname</span> 
+								<span ng-show="vm.sortType == 'lastName' && !vm.sortReverse" class="fa fa-caret-down"></span>
+								<span ng-show="vm.sortType == 'lastName' && vm.sortReverse" class="fa fa-caret-up"></span>
+							</a>
+						</td>
+						<td>
+							<span ng-click="vm.sortType = 'position'; vm.sortReverse = !vm.sortReverse">
+								Position</span> 
+								<span ng-show="vm.sortType == 'position' && !vm.sortReverse" class="fa fa-caret-down"></span>
+								<span ng-show="vm.sortType == 'position' && vm.sortReverse" class="fa fa-caret-up"></span>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr ng-repeat="(key, person) in vm.persons | orderBy:vm.sortType:vm.sortReverse | filter:vm.search">
+						<td> <input type="checkbox" ng-change="vm.sync(key)" ng-model="person.__v"> </td>
+						<td>{{person.firstName}}</td>
+						<td>{{person.lastName}}</td>
+						<td>{{person.position}}</td>
+						<td> <button class="btn btn-info" ng-click="vm.displayModal(person._id)">Update</button></td>
+					</tr>
+				</tbody>
+				
+			</table>
+			
+		</div>
+</div>
+<button class="btn btn-danger" ng-click="vm.personToDelete()">Delete</button>
+
+
+<div class="modal" ng-show="vm.modal">
+		<div class="modal-content">
+				<div class="form-сontainer">
+						<form class="form-inline" role="form" name="updateForm">
+							<div class="form-group">
+								<div class="col-sm-4">
+									<input type="text" class="form-control" name="updateFirstName" ng-model="vm.currentPerson.firstName" placeholder="First Name">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4">
+									<input type="text" class="form-control" required name="updateLastName" ng-model="vm.currentPerson.lastName" placeholder="Last Name">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4">
+									<input type="text" class="form-control" required name="updatePosition" ng-model="vm.currentPerson.position" placeholder="Position">
+								</div>
+							</div>
+						</form>
+						<button class="btn btn-info" id="btnSubmit" ng-click="vm.updatePerson(vm.person._id)">Update</button>
+						<button class="btn btn-default" id="btnSubmit" ng-click="vm.displayModal()">Close</button>
+					</div>
+		</div>
+	</div>

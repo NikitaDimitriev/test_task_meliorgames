@@ -1,0 +1,24 @@
+{
+  "name": "test_task_meliorgames",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.4.2",
+    "mongoose": "latest",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikitaDimitriev/test_task_meliorgames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikitaDimitriev/test_task_meliorgames/issues"
+  },
+  "homepage": "https://github.com/NikitaDimitriev/test_task_meliorgames#readme"
+}
